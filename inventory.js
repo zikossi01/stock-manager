@@ -35,7 +35,7 @@ class Inventory {
     }
     console.log('List of products in stock:');
     this.products.forEach(product => {
-      console.log(`${product.id} - ${product.name} | Description: ${product.description} | Quantity: ${product.quantity} | Total Price: ${product.getTotalPrice()}€`);
+      console.log(`${product.id} - ${product.name} | Description: ${product.description} | Quantity: ${product.quantity} | Total Price: ${product.price }mad`);
     });
   }
 
@@ -50,4 +50,16 @@ class Inventory {
     this.saveData(); 
     console.log('Product updated.');
   }
+  deleteProduct(id) {
+    const index = this.products.findIndex(p => p.id === id);
+    if (index === -1) {
+      console.log('Product not found.');
+      return;
+    }
+    this.products.splice(index, 1); // Remove the product from the list
+    this.saveData(); // Save updated data to file
+    console.log('Product deleted.');
+  }
 }
+
+module.exports = Inventory;
